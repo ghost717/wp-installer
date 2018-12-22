@@ -1,0 +1,27 @@
+{
+	"name": "ghost717",
+	"description": "core",
+	"srcPath": "src/",
+	"destPath": "build/",
+	"version": "1.0.0",
+	"devDependencies": {
+		"babel-core": "^6.26.0",
+		"babel-preset-env": "^1.6.1",
+		"del": "^2.2.2",
+		"gulp": "^3.9.1",
+		"gulp-autoprefixer": "^4.1.0",
+		"gulp-babel": "^7.0.1",
+		"gulp-concat": "^2.6.1",
+		"gulp-cssnano": "^2.1.2",
+		"gulp-imagemin": "^4.1.0",
+		"gulp-sass": "^3.1.0",
+		"gulp-sourcemaps": "^2.6.0",
+		"gulp-uglify": "^3.0.0",
+		"gulp-yuicompressor": "0.0.3",
+		"imagemin-mozjpeg": "^7.0.0",
+		"npm-watch": "^0.3.0"
+	},
+	"dependencies": {
+		"gulp-util": "^3.0.8"
+	}
+}

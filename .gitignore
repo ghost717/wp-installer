@@ -2,7 +2,8 @@ wp-snapshots
 wp-includes
 wp-admin
 wp-config.php
-wp-content/themes/theme/314/node_modules
+wp-content/themes/theme314/node_modules
+wp-content/themes/thesigner
 README.old2.md
 README.old.md
 license.txt
