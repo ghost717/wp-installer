@@ -15,7 +15,7 @@ php installer.php (only works on windows machines for now)
 
   
 
-cd wp-content/theme/thesigner && npm install
+cd wp-content/theme/theme314 && npm install
 
   
 
