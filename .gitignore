@@ -1,0 +1,12 @@
+wp-includes
+wp-admin
+wp-config.php
+wp-snapshots
+/license.txt
+/readme.html
+wp-content/*
+!wp-content/mu-plugins/
+!wp-content/plugins/
+!wp-content/themes/
+wp-content/themes/node_modules
+node_modules

@@ -1,0 +1,93 @@
+@mixin center($type: flex) {
+	@if $type=='flex' {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	@else if $type=='margin' {
+		margin: 0 auto;
+	}
+
+	@else {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+
+@mixin media($breakpoint, $type: min) {
+	@media screen and (#{$type}-width: #{$breakpoint}) {
+		@content;
+	}
+}
+
+@mixin bg($file, $size: false, $pos: false) {
+	background-image: url('../../dist/img/#{$file}');
+
+	@if $size {
+		background-size: $size;
+	}
+
+	@if $pos {
+		background-position: $pos;
+	}
+}
+
+@mixin row($gutter) {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	margin-left: -#{$gutter}px;
+	margin-right: -#{$gutter}px;
+
+	@include media($tablet, 'max') {
+		width: 100%;
+		margin: 0;
+	}
+}
+
+@mixin col($items, $margin) {
+	width: calc(100% / #{$items} - #{$margin}px);
+	margin: 0 #{$margin / 2}px #{$margin}px;
+
+	@include media($tablet, 'max') {
+		width: 100%;
+		margin: #{$margin}px 0;
+	}
+}
+
+@mixin fw($after: false) {
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: block;
+
+	@if $after {
+		content: " ";
+	}
+
+}
+
+@mixin box($width, $height:$width) {
+	width: $width;
+	height: $height;
+}
+
+@mixin keyframes($params) {
+	animation: #{$params};
+
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+@mixin ratio($x, $y) {
+	$padding: unquote(($y / $x) * 100 + '%');
+	padding-top: $padding;
+}
