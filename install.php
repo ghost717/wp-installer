@@ -124,6 +124,9 @@ $con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$mysql_databas
 
 mysqli_close($con);
 
+echo $open . "Usuwam db.sql" . $break;
+exec('del db.sql');
+
 
 echo $break;
 echo $open . "-Operacja zakończona!-";
