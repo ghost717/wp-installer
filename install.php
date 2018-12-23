@@ -108,12 +108,13 @@ $con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$db_to_import)
 		}
 	}
 
-	echo "Tables imported successfully";
+	echo "Tables imported successfully" . $break;
 
 mysqli_close($con);
 
-echo $open . "Usuwam db.sql" . $break;
+echo $open . "Usuwam cfg.php i db.sql" . $break;
 exec('del db.sql');
+exec('del cfg.php');
 
 
 echo $break;
