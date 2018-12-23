@@ -24,8 +24,30 @@ $mysql_username = trim(fgets($stdin));
 echo 'mysql_password '.$break;
 $mysql_password = trim(fgets($stdin));
 
+
+
+//changing project path
+$myfile = file_get_contents('./db.sql');
+$projectPath = dirname(__FILE__);
+
+//echo $myfile;
+$newProjectPath = str_replace("\\", "/", $projectPath);
+$newProjectPath = str_replace("C:/serwer/htdocs", "http://localhost", $newProjectPath);
+
+$newProjectPath = str_replace("C:/serwer/htdocs", "http://localhost", $newProjectPath);
+
+$newFile = str_replace("http://localhost/praca/wp-314/", $newProjectPath.'/', $myfile);
+
+file_put_contents("./db.sql",$newFile);
+
+
+
 //windows MySQL path
 $project_path = dirname(__FILE__);
 $mysqldump_path = realpath('/serwer/mysql/bin/mysqldump.exe'); 
+
+
+
+
 
 ?>
