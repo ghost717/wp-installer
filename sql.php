@@ -5,6 +5,17 @@ $stdin = fopen('php://stdin', 'r');
 $return_var = NULL;
 $output = NULL;
 
+// MySQL host
+echo 'mysql_host '.$break; //$mysql_host = '127.0.0.1'; //localhost
+$mysql_host = trim(fgets($stdin));
+
+echo 'mysql_username '.$break;
+$mysql_username = trim(fgets($stdin));
+
+echo 'mysql_password '.$break;
+$mysql_password = trim(fgets($stdin));
+
+
 // DATABASE
 echo 'sql to import '.$break;
 $filename = trim(fgets($stdin));
@@ -14,16 +25,6 @@ $db_to_export = trim(fgets($stdin));
 
 echo 'db_to_import '.$break;
 $db_to_import = trim(fgets($stdin));
-
-// MySQL host
-$mysql_host = '127.0.0.1'; //localhost
-
-echo 'mysql_username '.$break;
-$mysql_username = trim(fgets($stdin));
-
-echo 'mysql_password '.$break;
-$mysql_password = trim(fgets($stdin));
-
 
 
 //changing project path
@@ -38,7 +39,7 @@ $newProjectPath = str_replace("C:/serwer/htdocs", "http://localhost", $newProjec
 
 $newFile = str_replace("http://localhost/praca/wp-314/", $newProjectPath.'/', $myfile);
 
-file_put_contents("./db.sql",$newFile);
+file_put_contents("./".$filename,$newFile);
 
 
 
