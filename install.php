@@ -13,8 +13,7 @@ echo $open . ":: Randomowy Kawał :D ::" . $break;
 echo $open. ":: " . str_replace('"', '', file_get_contents('https://geek-jokes.sameerkumar.website/api'));
 echo $break;
 
-
-//pobieranie ostatniego wp
+/* DOWNLOAD FILE */
 $zipResource = fopen($zipFile, "w");
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
@@ -32,10 +31,9 @@ if (!$downloaded) {
     echo $open . "<p class='error'>Błąd pobierania - log: ".curl_error($ch) . '</p>';
 }
 curl_close($ch);
-// plik pobrany
 
 
-//unzip
+/* UNZIP */
 $file = 'wp.zip';
 $path = pathinfo(realpath($file), PATHINFO_DIRNAME);
 $zip = new ZipArchive;
@@ -52,9 +50,9 @@ if ($res === true) {
 }
 echo $open . "-Kończenie instalacji-" . $break;
 
+/* CLEANING */
 echo $open . "Usuwam oryginalnego wp-content" . $break;
 exec('rmdir /Q /S '.getcwd().'\wordpress\wp-content');
-
 echo $open . "Usuwam pliki instalacyjne" . $break;
 exec('del install.php');
 echo $open . "Usuwam .gitignore" . $break;
@@ -70,12 +68,62 @@ echo $open . "Usuwam license.txt i readme.html" . $break;
 exec('del license.txt');
 exec('del readme.html');
 
+
+/* DATABASE */
 echo $open . "Pobieram db.sql" . $break;
+
 $return_var = NULL;
 $output = NULL;
+// Name of the file
+$filename = 'db.sql';
+$filename2 = 'database.sql';
+// MySQL host
+$mysql_host = 'localhost'; //localhost
+// MySQL username
+$mysql_username = 'root';
+// MySQL password
+$mysql_password = '';
+// Database name
+$mysql_database = 'wp_test';
+
 $command = "C:/serwer/mysql/bin/mysqldump.exe -u root -h 127.0.0.1 wp-314 > C:/serwer/htdocs/dev/wp/test/db.sql";
 
 exec($command, $output, $return_var);
+
+echo $open . "Importuje db.sql" . $break;
+
+$con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$mysql_database);
+
+	if (!$con) {
+		die('Could not connect: ' . mysqli_error());
+	}
+	// echo 'Connected successfully';
+
+	// Temporary variable, used to store current query
+	$templine = '';
+	// Read in entire file
+	$lines = file($filename);
+	// Loop through each line
+	foreach ($lines as $line){
+	// Skip it if it's a comment
+		if (substr($line, 0, 2) == '--' || $line == '')
+			continue;
+
+		// Add this line to the current segment
+		$templine .= $line;
+	// If it has a semicolon at the end, it's the end of the query
+		if (substr(trim($line), -1, 1) == ';'){
+			// Perform the query
+			mysqli_query($con, $templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysqli_error() . '<br /><br />');
+			// Reset temp variable to empty
+			$templine = '';
+		}
+	}
+
+	echo "Tables imported successfully";
+
+mysqli_close($con);
+
 
 echo $break;
 echo $open . "-Operacja zakończona!-";
