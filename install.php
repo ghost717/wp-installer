@@ -72,27 +72,15 @@ exec('del readme.html');
 /* DATABASE */
 echo $open . "Pobieram db.sql" . $break;
 
-$return_var = NULL;
-$output = NULL;
-// Name of the file
-$filename = 'db.sql';
-$filename2 = 'database.sql';
-// MySQL host
-$mysql_host = 'localhost'; //localhost
-// MySQL username
-$mysql_username = 'root';
-// MySQL password
-$mysql_password = '';
-// Database name
-$mysql_database = 'wp_test';
+include 'cfg.php';
 
-$command = "C:/serwer/mysql/bin/mysqldump.exe -u root -h 127.0.0.1 wp-314 > C:/serwer/htdocs/dev/wp/test/db.sql";
-
+//import db
+$command = $mysqldump_path .' -u '.$mysql_username.' -h '.$mysql_host.' '.$db_to_export.' > '.$project_path.'/'.$filename;
 exec($command, $output, $return_var);
 
 echo $open . "Importuje db.sql" . $break;
 
-$con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$mysql_database);
+$con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$db_to_import);
 
 	if (!$con) {
 		die('Could not connect: ' . mysqli_error());
