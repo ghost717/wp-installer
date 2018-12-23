@@ -70,6 +70,13 @@ echo $open . "Usuwam license.txt i readme.html" . $break;
 exec('del license.txt');
 exec('del readme.html');
 
+echo $open . "Pobieram db.sql" . $break;
+$return_var = NULL;
+$output = NULL;
+$command = "C:/serwer/mysql/bin/mysqldump.exe -u root -h 127.0.0.1 wp-314 > C:/serwer/htdocs/dev/wp/test/db.sql";
+
+exec($command, $output, $return_var);
+
 echo $break;
 echo $open . "-Operacja zakończona!-";
 echo $break;
