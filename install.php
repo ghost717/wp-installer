@@ -2,6 +2,8 @@
 $break = "\n\n";
 $open = "  ";
 
+include 'sql.php';
+
 $url = "https://wordpress.org/latest.zip";
 $zipFile = "wp.zip";
 
@@ -72,8 +74,6 @@ exec('del readme.html');
 /* DATABASE */
 echo $open . "Pobieram db.sql" . $break;
 
-include 'cfg.php';
-
 //import db
 $command = $mysqldump_path .' -u '.$mysql_username.' -h '.$mysql_host.' '.$db_to_export.' > '.$project_path.'/'.$filename;
 exec($command, $output, $return_var);
@@ -112,9 +112,9 @@ $con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$db_to_import)
 
 mysqli_close($con);
 
-echo $open . "Usuwam cfg.php i db.sql" . $break;
+echo $open . "Usuwam sql.php i db.sql" . $break;
 exec('del db.sql');
-exec('del cfg.php');
+exec('del sql.php');
 
 
 echo $break;
