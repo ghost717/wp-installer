@@ -66,6 +66,10 @@ exec('robocopy /move /e wordpress ' . getcwd());
 echo $open . "Usuwam repozytorium" . $break;
 exec('rmdir /Q /S .git');
 
+echo $open . "Usuwam license.txt i readme.html" . $break;
+exec('del license.txt');
+exec('del readme.html');
+
 echo $break;
 echo $open . "-Operacja zakończona!-";
 echo $break;
