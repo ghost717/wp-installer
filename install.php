@@ -112,8 +112,23 @@ $con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$db_to_import)
 
 mysqli_close($con);
 
-echo $open . "Usuwam sql.php i db.sql" . $break;
-exec('del db.sql');
+//changing project path
+$myfile = file_get_contents('./'.$filename);
+$projectPath = dirname(__FILE__);
+
+//echo $myfile;
+$newProjectPath = str_replace("\\", "/", $projectPath);
+$myfile = str_replace("C:/serwer/htdocs/praca/wp-314", $newProjectPath, $myfile);
+$newProjectPath = str_replace("C:/serwer/htdocs", "http://localhost", $newProjectPath);
+
+
+$newFile = str_replace("http://localhost/praca/wp-314", $newProjectPath, $myfile);
+
+file_put_contents("./".$filename,$newFile);
+file_put_contents("./dump.sql",$newFile);
+
+echo $open . "Usuwam sql.php i ".$filename.' ' . $break;
+exec('del '.$filename);
 exec('del sql.php');
 
 
