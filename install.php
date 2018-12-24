@@ -74,10 +74,26 @@ exec('del readme.html');
 /* DATABASE */
 echo $open . "Pobieram db.sql" . $break;
 
-//import db
+//export db
 $command = $mysqldump_path .' -u '.$mysql_username.' -h '.$mysql_host.' '.$db_to_export.' > '.$project_path.'/'.$filename;
 exec($command, $output, $return_var);
 
+//changing project path
+$myfile = file_get_contents('./'.$filename);
+$projectPath = dirname(__FILE__);
+
+//echo $myfile;
+$newProjectPath = str_replace("\\", "/", $projectPath);
+$myfile = str_replace("C:/serwer/htdocs/praca/wp-314", $newProjectPath, $myfile);
+$newProjectPath = str_replace("C:/serwer/htdocs", "http://localhost", $newProjectPath);
+
+
+$newFile = str_replace("http://localhost/praca/wp-314", $newProjectPath, $myfile);
+
+file_put_contents("./".$filename,$newFile);
+file_put_contents("./dump.sql",$newFile);
+
+//import db
 echo $open . "Importuje db.sql" . $break;
 
 $con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$db_to_import);
@@ -111,21 +127,6 @@ $con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$db_to_import)
 	echo "Tables imported successfully" . $break;
 
 mysqli_close($con);
-
-//changing project path
-$myfile = file_get_contents('./'.$filename);
-$projectPath = dirname(__FILE__);
-
-//echo $myfile;
-$newProjectPath = str_replace("\\", "/", $projectPath);
-$myfile = str_replace("C:/serwer/htdocs/praca/wp-314", $newProjectPath, $myfile);
-$newProjectPath = str_replace("C:/serwer/htdocs", "http://localhost", $newProjectPath);
-
-
-$newFile = str_replace("http://localhost/praca/wp-314", $newProjectPath, $myfile);
-
-file_put_contents("./".$filename,$newFile);
-file_put_contents("./dump.sql",$newFile);
 
 echo $open . "Usuwam sql.php i ".$filename.' ' . $break;
 exec('del '.$filename);
