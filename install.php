@@ -91,7 +91,7 @@ $newProjectPath = str_replace("C:/serwer/htdocs", "http://localhost", $newProjec
 $newFile = str_replace("http://localhost/praca/wp-314", $newProjectPath, $myfile);
 
 file_put_contents("./".$filename,$newFile);
-file_put_contents("./dump.sql",$newFile);
+//file_put_contents("./dump.sql",$newFile);
 
 //import db
 echo $open . "Importuje db.sql" . $break;
