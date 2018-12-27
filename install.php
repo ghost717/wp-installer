@@ -137,4 +137,5 @@ echo $break;
 echo $open . "-Operacja zakończona!-";
 echo $break;
 echo $open . "@@Usuń plik wp.zip (problem z prawami procesu)@@". $break;
+
 ?>
