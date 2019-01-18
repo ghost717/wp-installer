@@ -2,7 +2,7 @@
 $break = "\n\n";
 $open = "  ";
 
-// include 'sql.php';
+include 'sql.php';
 
 $url = "https://wordpress.org/latest.zip";
 $zipFile = "wp.zip";
@@ -33,7 +33,6 @@ if (!$downloaded) {
     echo $open . "<p class='error'>Błąd pobierania - log: ".curl_error($ch) . '</p>';
 }
 curl_close($ch);
-
 
 /* UNZIP */
 $file = 'wp.zip';
@@ -78,27 +77,20 @@ echo $open . "Pobieram db.sql" . $break;
 
 //Mac Os MySQL path
 $project_path = dirname(__FILE__);
-$mysqldump_macpath = realpath('/Applications/XAMPP/xamppfiles/bin/mysqldump.exe');
+$mysqldump_macpath = realpath('/Applications/XAMPP/xamppfiles/bin/mysqldump');
 
 //export db
-// $command = $mysqldump_macpath .' -u '.$mysql_username.' -h '.$mysql_host.' '.$db_to_export.' > '.$project_path.'/'.$filename;
-echo $open . "project_path " .$project_path. $break;
-$command = $mysqldump_macpath .' '.$db_to_export.' > '.$project_path.'/'.$filename;
+$command = $mysqldump_macpath .' -u '.$mysql_username.' -h '.$mysql_host.' '.$db_to_export.' > '.$project_path.'/'.$filename;
 exec($command, $output, $return_var);
 
-//changing project path
+//changing project paths
 $myfile = file_get_contents('./'.$filename);
-$projectPath = dirname(__FILE__);
-
-//echo $myfile;
-$newProjectPath = str_replace("\\", "/", $projectPath);
-$myfile = str_replace("/Applications/XAMPP/xamppfiles/htdocs/dev/wp-314", $newProjectPath, $myfile);
-$newProjectPath = str_replace("/Applications/XAMPP/xamppfiles/htdocs", "http://localhost", $newProjectPath);
+$myfile = str_replace("/Applications/XAMPP/xamppfiles/htdocs/dev/wp-314", $project_path, $myfile);
+$newProjectPath = str_replace("/Applications/XAMPP/xamppfiles/htdocs", "http://localhost", $project_path);
 
 $newFile = str_replace("http://localhost/dev/wp-314", $newProjectPath, $myfile);
 
 file_put_contents("./".$filename,$newFile);
-//file_put_contents("./dump.sql",$newFile);
 
 //import db
 echo $open . "Importuje db.sql" . $break;
@@ -108,7 +100,6 @@ $con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$db_to_import)
 	if (!$con) {
 		die('Could not connect: ' . mysqli_error());
 	}
-	// echo 'Connected successfully';
 
 	// Temporary variable, used to store current query
 	$templine = '';
@@ -141,7 +132,5 @@ exec('rm sql.php');
 
 echo $break;
 echo $open . "-Operacja zakończona!-";
-echo $break;
-echo $open . "@@Usuń plik wp.zip (problem z prawami procesu)@@". $break;
 
 ?>
