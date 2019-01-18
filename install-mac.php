@@ -66,6 +66,8 @@ echo $open . "Kopiuje pliki szablonów oraz motywu" . $break;
 exec('mv wordpress/* .');
 echo $open . "Usuwam repozytorium" . $break;
 exec('rm -rf .git');
+exec('rm wp.zip');
+exec('rm -rf wordpress');
 
 echo $open . "Usuwam license.txt i readme.html" . $break;
 exec('rm license.txt');
@@ -79,7 +81,9 @@ $project_path = dirname(__FILE__);
 $mysqldump_macpath = realpath('/Applications/XAMPP/xamppfiles/bin/mysqldump.exe');
 
 //export db
-$command = $mysqldump_macpath .' -u '.$mysql_username.' -h '.$mysql_host.' '.$db_to_export.' > '.$project_path.'/'.$filename;
+// $command = $mysqldump_macpath .' -u '.$mysql_username.' -h '.$mysql_host.' '.$db_to_export.' > '.$project_path.'/'.$filename;
+echo $open . "project_path " .$project_path. $break;
+$command = $mysqldump_macpath .' '.$db_to_export.' > '.$project_path.'/'.$filename;
 exec($command, $output, $return_var);
 
 //changing project path
