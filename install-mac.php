@@ -54,28 +54,32 @@ echo $open . "-Kończenie instalacji-" . $break;
 
 /* CLEANING */
 echo $open . "Usuwam oryginalnego wp-content" . $break;
-exec('rmdir /Q /S '.getcwd().'\wordpress\wp-content');
+exec('rm -rf '.getcwd().'/wordpress/wp-content');
 echo $open . "Usuwam pliki instalacyjne" . $break;
-exec('del install.php');
+exec('rm install.php');
+// exec('rm install-mac.php');
 echo $open . "Usuwam .gitignore" . $break;
-exec('del .gitignore');
+exec('rm .gitignore');
 echo $open . "Usuwam README.md" . $break;
-exec('del README.md');
+exec('rm README.md');
 echo $open . "Kopiuje pliki szablonów oraz motywu" . $break;
-exec('robocopy /move /e wordpress ' . getcwd());
+exec('mv wordpress/* .');
 echo $open . "Usuwam repozytorium" . $break;
-exec('rmdir /Q /S .git');
+exec('rm -rf .git');
 
 echo $open . "Usuwam license.txt i readme.html" . $break;
-exec('del license.txt');
-exec('del readme.html');
-
+exec('rm license.txt');
+exec('rm readme.html');
 
 /* DATABASE */
 echo $open . "Pobieram db.sql" . $break;
 
+//Mac Os MySQL path
+$project_path = dirname(__FILE__);
+$mysqldump_macpath = realpath('/Applications/XAMPP/xamppfiles/bin/mysqldump.exe');
+
 //export db
-$command = $mysqldump_path .' -u '.$mysql_username.' -h '.$mysql_host.' '.$db_to_export.' > '.$project_path.'/'.$filename;
+$command = $mysqldump_macpath .' -u '.$mysql_username.' -h '.$mysql_host.' '.$db_to_export.' > '.$project_path.'/'.$filename;
 exec($command, $output, $return_var);
 
 //changing project path
@@ -84,11 +88,10 @@ $projectPath = dirname(__FILE__);
 
 //echo $myfile;
 $newProjectPath = str_replace("\\", "/", $projectPath);
-$myfile = str_replace("C:/serwer/htdocs/praca/wp-314", $newProjectPath, $myfile);
-$newProjectPath = str_replace("C:/serwer/htdocs", "http://localhost", $newProjectPath);
+$myfile = str_replace("/Applications/XAMPP/xamppfiles/htdocs/dev/wp-314", $newProjectPath, $myfile);
+$newProjectPath = str_replace("/Applications/XAMPP/xamppfiles/htdocs", "http://localhost", $newProjectPath);
 
-
-$newFile = str_replace("http://localhost/praca/wp-314", $newProjectPath, $myfile);
+$newFile = str_replace("http://localhost/dev/wp-314", $newProjectPath, $myfile);
 
 file_put_contents("./".$filename,$newFile);
 //file_put_contents("./dump.sql",$newFile);
@@ -129,9 +132,8 @@ $con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$db_to_import)
 mysqli_close($con);
 
 echo $open . "Usuwam sql.php i ".$filename.' ' . $break;
-exec('del '.$filename);
-exec('del sql.php');
-
+exec('rm '.$filename);
+exec('rm sql.php');
 
 echo $break;
 echo $open . "-Operacja zakończona!-";
