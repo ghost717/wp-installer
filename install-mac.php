@@ -56,7 +56,7 @@ echo $open . "Usuwam oryginalnego wp-content" . $break;
 exec('rm -rf '.getcwd().'/wordpress/wp-content');
 echo $open . "Usuwam pliki instalacyjne" . $break;
 exec('rm install.php');
-// exec('rm install-mac.php');
+exec('rm install-mac.php');
 echo $open . "Usuwam .gitignore" . $break;
 exec('rm .gitignore');
 echo $open . "Usuwam README.md" . $break;
