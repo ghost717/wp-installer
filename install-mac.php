@@ -73,7 +73,7 @@ exec('rm license.txt');
 exec('rm readme.html');
 
 /* DATABASE */
-echo $open . "Pobieram db.sql" . $break;
+echo $open . "Pobieram ".$filename . $break;
 
 //Mac Os MySQL path
 $project_path = dirname(__FILE__);
@@ -88,12 +88,12 @@ $myfile = file_get_contents('./'.$filename);
 $myfile = str_replace("/Applications/XAMPP/xamppfiles/htdocs/dev/wp-314", $project_path, $myfile);
 $newProjectPath = str_replace("/Applications/XAMPP/xamppfiles/htdocs", "http://localhost", $project_path);
 
+//adding new project paths
 $newFile = str_replace("http://localhost/dev/wp-314", $newProjectPath, $myfile);
-
 file_put_contents("./".$filename,$newFile);
 
 //import db
-echo $open . "Importuje db.sql" . $break;
+echo $open . "Importuje ".$filename . $break;
 
 $con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$db_to_import);
 
