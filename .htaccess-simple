@@ -50,8 +50,8 @@
 </IfModule>
 
 <IfModule mod_headers.c>
-  <filesmatch "\.(ico|flv|jpg|jpeg|png|gif|css|swf)$">
-  Header set Cache-Control "max-age=2678400, public"
+  <filesmatch "\.(ico|flv|jpg|jpeg|png|gif|swf)$">
+  Header set Cache-Control "max-age=31536000, public"
   </filesmatch>
   <filesmatch "\.(html|htm)$">
   Header set Cache-Control "max-age=7200, private, must-revalidate"
@@ -59,7 +59,7 @@
   <filesmatch "\.(pdf)$">
   Header set Cache-Control "max-age=86400, public"
   </filesmatch>
-  <filesmatch "\.(js)$">
-  Header set Cache-Control "max-age=2678400, private"
+  <filesmatch "\.(css|js)$">
+  Header set Cache-Control "max-age=31536000, private"
   </filesmatch>
 </IfModule>
