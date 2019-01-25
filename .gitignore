@@ -8,6 +8,7 @@ wp-content/themes/theme314/node_modules
 wp-content/themes/thesigner
 README.old2.md
 README.old.md
+.DS_Store
 wp-content/*
 !wp-content/mu-plugins/
 !wp-content/plugins/
