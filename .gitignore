@@ -1,8 +1,9 @@
+wp-content/themes/wp-314/node_modules
 wp-content/backup-dup-pro
 wp-snapshots
+wp-config.php
 wp-includes
 wp-admin
-wp-config.php
 cfg.php
 .*.php
 wp-content/themes/theme314/node_modules
