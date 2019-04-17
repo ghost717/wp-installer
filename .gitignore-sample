@@ -1,5 +1,6 @@
 wp-content/themes/wp-314/node_modules
 wp-content/backup-dup-pro
+wp-content/backups-dup-pro
 wp-snapshots
 wp-config.php
 .DS_Store
