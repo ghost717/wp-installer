@@ -4,6 +4,7 @@ wp-snapshots
 wp-config.php
 wp-includes
 wp-admin
+node_modules
 cfg.php
 .*.php
 wp-content/themes/theme314/node_modules
