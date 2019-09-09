@@ -1,4 +1,6 @@
 wp-content/themes/wp-314/node_modules
+wp-content/themes/wp-314-child/node_modules
+node_modules
 wp-content/backup-dup-pro
 wp-content/backups-dup-pro
 wp-snapshots
