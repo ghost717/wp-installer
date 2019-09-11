@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
     <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
-    <!--[if IE]><link rel="shortcut icon" href="path/to/favicon.ico"><![endif]-->
+    <!--[if IE]><link rel="shortcut icon" href="<?php $image = get_field('logo', 'option'); echo $fav = $image['sizes']['fav1']; ?>"><![endif]-->
     <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
-    <link rel="apple-touch-icon-precomposed" href="<?php asset('img/fav.png'); ?>">
+    <link rel="apple-touch-icon-precomposed" href="<?php $image = get_field('logo', 'option'); echo $fav = $image['sizes']['fav2']; ?>">
     <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
-    <link rel="icon" href="<?php asset('img/fav.png'); ?>">
+    <link rel="icon" href="<?php $image = get_field('logo', 'option'); echo $fav = $image['sizes']['fav3']; ?>">
 
     <!-- info / SEO -->
     <title><?php echo (get_field('title', 'option')) ? get_field('title', 'option') : bloginfo('title').' '.wp_title(); ?></title>
@@ -101,7 +101,7 @@
         </div>
         
         <div class="footer__copy">
-          Projekt i wykonanie <a href="http://stomatologia.314.pl/" target="_blank" aria-label="Stomatologia 314.pl">Stomatologia 314.pl</a>
+            Projekt i wykonanie <a href="http://stomatologia.314.pl/" target="_blank" aria-label="Stomatologia 314.pl">Stomatologia 314.pl</a>
         </div>
     </footer>
 

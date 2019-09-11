@@ -1,5 +1,15 @@
 <?php
 
+/**
+* Returns the path to the asset
+* @param string
+*
+* @return string
+*/
+function myAsset($asset){
+    echo get_stylesheet_directory_uri() .'/dist/'. $asset;
+}
+
 // load parent scripts & styles
 add_action( 'wp_enqueue_scripts', 'enqueue_parent_theme_style', 99 );
 function enqueue_parent_theme_style() {
@@ -15,6 +25,9 @@ function enqueue_parent_theme_style() {
 // image sizes
 add_action('after_setup_theme', 'image_sizes');
 function image_sizes(){
+    add_image_size('fav1', 32, 32, true);
+    add_image_size('fav2', 180, 180, true);
+    add_image_size('fav3', 196, 196, true);
     add_image_size('fullhd', 1920, 1080, true);
     add_image_size('thumb600', 600, 600, true);
 }
