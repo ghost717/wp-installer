@@ -9,18 +9,18 @@ Starter theme for simple and painless wordpress developement.
 
 CLONE & INSTALL REPO
 
-git clone https://github.com/ghost717/wp-installer.git newProjectName
+> git clone https://github.com/ghost717/wp-installer.git newProjectName
 
-cd newProjectName
+> cd newProjectName
 
-php install.php / install-mac.php (WIN/MAC)
+> php install.php / install-mac.php (WIN/MAC)
   
 
 INSTALL BASE THEME
 
-cd wp-content/theme/
+> cd wp-content/theme/
 
-git clone https://github.com/ghost717/gulp-app.git wp-314
+> git clone https://github.com/ghost717/gulp-app.git wp-314
 
 
 RUN DEV
