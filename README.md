@@ -2,37 +2,45 @@
 
 Starter theme for simple and painless wordpress developement.
 
+
 ### Installation
 
 ```bash
+
+CLONE & INSTALL REPO
 
 git clone https://github.com/ghost717/wp-installer.git newProjectName
 
 cd newProjectName
 
-php installer.php (only works on windows machines for now)
+php install.php / install-mac.php (WIN/MAC)
   
 
-cd wp-content/theme/theme314 && npm install
+INSTALL BASE THEME
 
-  
+cd wp-content/theme/
 
->> build the project
+git clone https://github.com/ghost717/gulp-app.git wp-314
 
-gulp build
 
-  
+RUN DEV
 
->> run developement
+> cd wp-content/theme/wp-314-child
 
-gulp
+> npm installl
+
+> gulp
+
+
+BUILD THE PROJECT
+
+> gulp build
 
 ```
 
-### Inluded Plugins
+### Inluded plugins
 
 | Plugin | Description |
 | ------ | ------ |
 | ACF PRO | [Fields manager](https://www.advancedcustomfields.com/resources/)|
 | Contacf form 7 | [Form bulder](https://wordpress.org/support/plugin/contact-form-7)|
-| Duplicator | [Backup and migration](https://snapcreek.com/support/)|
