@@ -1,5 +1,8 @@
 <?php
 
+// body class
+require get_template_directory() . '/inc/extras.php';
+
 /**
 * Returns the path to the asset
 * @param string
