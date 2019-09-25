@@ -35,6 +35,21 @@ function image_sizes(){
     add_image_size('thumb600', 600, 600, true);
 }
 
+//OPEN STREET MAP
+function ops_maps() {
+    $locations = get_field('lokalizacje', 'options');    
+    // begin output buffering
+    ob_start();
+    
+    foreach($locations as $location) {
+        echo $location['map']; 
+        break;
+    }
+    
+    return ob_get_clean();
+}
+add_shortcode( 'pimap', 'ops_maps' );
+
 // CUSTOM POST TYPES
 function post_type_zabiegi(){
     $labels = array(
