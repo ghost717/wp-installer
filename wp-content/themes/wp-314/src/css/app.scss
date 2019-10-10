@@ -1,0 +1,218 @@
+$transition: all 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
+
+@import "./lib/reset.scss";
+@import "./lib/owl.scss";
+@import "./lib/bootstrap-grid.min.scss";
+@import "./lib/_vars.scss";
+@import "./lib/_grid.scss";
+@import "./lib/_menu.scss";
+@import "./lib/_app.scss";
+
+@import url('https://fonts.googleapis.com/css?family=Raleway:200,300,400,600,800&amp;subset=latin-ext');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+*{
+	-webkit-transition: $transition;
+	transition: $transition;
+}
+
+html,
+body {
+	overflow-x: hidden;
+	font-size: 62.5%; 
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+	font-size: 15px;
+	font-size: 1.5rem; /* 15px */
+	color: $primary;
+	background-color: #f7f7f7;
+}
+
+// basic styling
+article{
+	font-size: 1.5rem;
+	font-size: 15px;
+	line-height: 22px;
+
+	p{
+		font-size: 1.5rem;
+		font-size: 15px;
+		line-height: 22px;
+	}
+	h1, h2, h3, h4, h5, h6{
+		margin-bottom: 20px;
+	}
+	ul, ol{
+		list-style: initial;
+		margin-left: 20px;
+		margin-bottom: 20px;
+	}
+}
+
+p{
+	margin-bottom: 20px;
+}
+
+.content{
+	padding: 20px;
+}
+
+img{
+	width: auto;
+	height: auto;
+	max-width: 100%;
+}
+
+svg{
+	width: 15px;
+	height: 15px;
+}
+
+a {
+	color: $primary;
+}
+
+a.more{
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 12px;
+	display: block;
+	margin: 20px 0;
+	border: 2px solid $primary;
+}
+
+a.more:hover{
+	background-color: $primary;
+}
+
+strong, b{
+	font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: 'Raleway', serif;
+	font-weight: 400;
+	margin-bottom: 20px;
+	line-height: initial;
+}
+
+h1{
+	font-size: 56px;
+}
+
+h2{
+	font-size: 36px;
+}
+
+h3{
+	font-size: 30px;
+}
+
+h4{
+	font-size: 24px;
+}
+
+h5{
+	font-size: 16px;
+}
+
+h6{
+	font-size: 14px;
+}
+
+section, header, footer{
+	position: relative;
+}
+
+.wrap{
+	width: 100%;
+	max-width: 1170px;
+	margin: auto;
+}
+
+.header{
+	.wrap{
+		overflow: hidden;
+	}
+
+	&__branding{
+		display: block;
+		float: left;
+	}
+	&__logo{
+		display: block;
+		width: 100%;
+		max-width: 240px;
+	}
+	&__nav{
+		width: calc((100% - 240px));
+		float: left;
+
+		ul.menu, ul{
+			text-align: right;
+
+			li{
+				display: inline-block;
+				padding-left: 10px;
+
+				a{
+					display: block;
+					text-transform: uppercase;
+					color: $secondary;
+					font-size: 14px;
+					text-decoration: none;
+				}
+			}
+			li:hover, li.current_page_item{
+				a{
+					
+				}
+			}
+		}
+	}
+	
+}
+
+.header{
+
+}
+
+.main{
+
+}
+
+.footer{
+
+}
+
+@media(min-width: 768px){
+	article.content{
+		padding: 40px;
+	}
+}
+
+@media(min-width: 1200px){
+	.content{
+		padding: 40px 0;
+	}
+	article.content{
+		padding: 40px;
+	}
+	h1, h2, h3, h4, h5, h6{
+		margin-bottom: 40px;
+	}
+}
+
+@media(min-width: 1600px){
+	.content{
+		padding: 50px 0;
+	}
+	article.content{
+		padding: 50px;
+	}
+	h1, h2, h3, h4, h5, h6{
+		margin-bottom: 50px;
+	}
+}

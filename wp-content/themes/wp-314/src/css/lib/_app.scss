@@ -1,0 +1,492 @@
+.owl-carousel{
+	.owl-nav{
+		button{
+			width: 30px;
+			height: 30px;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			    -ms-flex-align: center;
+			        align-items: center;
+			-webkit-box-pack: center;
+			    -ms-flex-pack: center;
+			        justify-content: center;
+			color: #fff !important;
+			font-weight: 800 !important;
+			background-color: $primary !important;
+		
+			&:hover{
+				background-color: $primary !important;
+				color: #fff !important;
+			}
+		}
+		.owl-prev{
+			position: absolute;
+			top: 50%;
+			left: 20px;
+		}
+		.owl-next{
+			position: absolute;
+			top: 50%;
+			right: 20px;
+		}
+	}
+	.owl-dots{
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		text-align: center;
+		padding: 5px 0;
+	
+		.owl-dot{
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			background-color: #fff;
+			border-radius: 50%;
+			margin: 3px;
+		}	
+	}
+	@media(min-width: 1200px){
+		.owl-nav{
+			.owl-prev{
+				left: -40px;
+			}
+			.owl-next{
+				right: -40px;
+			}
+		}	
+	}
+}
+
+.wpcf7{
+	form{
+		margin: 0 -15px;
+		overflow: hidden;
+	}
+	input:not([type='submit']), textarea, select{
+		background: transparent;
+		display: block;
+		width: 100%;
+		padding: 10px 10px;
+		padding-left: 40px;
+		border: 1px solid #c8c8c8;
+		border-radius: 0;
+	}
+	select{
+		-webkit-appearance: button;
+		-moz-appearance: button;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-webkit-padding-end: 20px;
+		-moz-padding-end: 20px;
+		-webkit-padding-start: 40px;
+		-moz-padding-start: 40px;
+	}
+	textarea{
+		height: 135px;
+	}
+	.acceptance-126{
+		display: inline-block;
+
+		input{
+			width: 20px;
+		}
+	}
+	.wpcf7-submit{
+		text-transform: uppercase;
+		font-weight: 400;
+		font-size: 13px;
+		display: block;
+		margin: 20px 0;
+		padding: 10px 20px;
+		border: 1px solid #272727;
+		background-color: $primary;
+		color: #fff;
+		text-decoration: none;
+		text-align: center;
+		font-weight: 600;
+		max-width: 200px;
+		margin: 0 0 0 auto;
+
+		&:hover{
+			background-color: transparent;
+			color: $primary;
+		}
+	}
+	.input-group{
+		position: relative;
+		margin-bottom: 15px;
+
+		.input-group-addon{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 30px;
+			height: 100%;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			    -ms-flex-align: center;
+			        align-items: center;
+			-webkit-box-pack: center;
+			    -ms-flex-pack: center;
+			        justify-content: center;
+			z-index: 2;
+			border-right: 1px solid #c8c8c8;
+			padding: 10px 0;
+		}
+	}
+	form{
+		/* textarea */
+		div:nth-child(7){
+			.input-group-addon{
+				height: calc(100% - 7px);
+				-webkit-box-align: start;
+				    -ms-flex-align: start;
+				        align-items: flex-start;
+			}
+		}
+	}
+}
+
+.lightbox{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0,0.9);
+    overflow: auto;
+
+    #exit{
+        width: 100%;
+        font-size: 30px;
+        color: #fff;
+        display: block;
+        text-align: right;
+        margin: 50px 0px 20px -20px;
+        text-decoration: none;
+    }
+    .thumb{
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        width: 100%;
+        height: calc(100% - 100px);
+
+		.bg{
+			background-image: none !important;
+		}
+        .pic{
+            width: 100%;
+            height: 100%;
+
+            a{
+                display: block;
+                width: 100%;
+                height: 100%;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                        justify-content: center;
+                -webkit-box-align: center;
+                    -ms-flex-align: center;
+                        align-items: center;
+				background-image: none !important;
+				
+                img{
+                    width: auto;
+                    height: auto;
+                    max-width: 100%;
+                    max-height: 95%;
+                    display: block;
+                    margin: auto;
+                }
+            }
+        }
+        .glyphicon{
+            position: absolute;
+            font-size: 30px;
+            color: #fff;
+            text-decoration: none;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+        }
+        .arrow-left{
+            position: absolute;
+            top: 50%;
+            left: 50px;
+        }
+        .arrow-right{
+            position: absolute;
+            top: 50%;
+            right: 50px;
+        }
+    }
+}
+
+.tel{
+	position: relative;
+
+	&__hover{
+		visibility: hidden;
+		display: none;
+	}
+	@media(min-width: 992px){
+		&__primary{
+			visibility: hidden;
+			display: none;
+		}
+		&__hover{
+			visibility: visible;
+			display: inline-block;
+		}
+	}
+}
+
+.modal__form{
+	display: none;
+	height: 0;
+
+	&__sep{
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 20px;
+	}
+	h3{
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.wrap{
+		width: 100%;
+		max-width: 500px;
+		background-color: #fff;
+	}
+	.content{
+		padding: 20px;
+
+		@media(min-width: 1200px){
+			padding: 50px;
+		}
+	}
+	#exit{
+		background: #000;
+		width: 40px !important;
+		height: 40px !important;
+		display: -webkit-box !important;
+		display: -ms-flexbox !important;
+		display: flex !important;
+		-webkit-box-align: center !important;
+		    -ms-flex-align: center !important;
+		        align-items: center !important;
+		-webkit-box-pack: center !important;
+		    -ms-flex-pack: center !important;
+		        justify-content: center !important;
+		position: absolute !important;
+		top: -20px !important;
+		left: 0 !important;
+		left: auto !important; 
+		right: 0 !important;
+
+		@media(min-width: 1200px){
+			top: -50px !important;
+		}
+	}
+}
+.modal__form.active{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	height: 100vh;
+}
+
+#callnowbutton{
+	z-index: 3!important;
+
+	img{
+		width: 35px;
+		margin-right: 10px;
+	}
+	&:hover{
+		img{
+			-webkit-transform: scale(1.2);
+			        transform: scale(1.2);
+		}
+	}
+}
+
+#cookies{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.9);
+	color: #fff;
+	width: 100vw;
+	z-index: 99;
+	padding: 10px;
+	font-weight: 300;
+
+	a{
+		color: #fff;
+	}
+	#exit{
+		display: inline-block;
+		margin: 0 10px;
+		width: 200px;
+		text-align: center;
+		color: #fff;
+		background: #ffc208;
+		padding: 7px 20px;
+		text-align: center;
+		-webkit-transition: 0.3s all ease-in-out;
+		transition: 0.3s all ease-in-out;
+		border-left: 5px solid transparent;
+		cursor: pointer;
+	}
+	@media(min-width: 1200px){
+		padding: 10px 0;
+	}
+	@media(max-width: 767px){
+		text-align: center;
+
+		#exit{
+			margin: 10px auto;
+		}
+	}
+}
+
+#loader{
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    background: $secondary;
+}
+
+/* =WordPress Core
+-------------------------------------------------------------- */
+.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.aligncenter,
+div.aligncenter {
+    display: block;
+    margin: 5px auto 5px auto;
+}
+
+.alignright {
+    float:right;
+    margin: 5px 0 20px 20px;
+}
+
+.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignright {
+    float: right;
+    margin: 5px 0 20px 20px;
+}
+
+a img.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+a img.alignleft {
+    float: left;
+    margin: 5px 20px 20px 0;
+}
+
+a img.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-caption {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    max-width: 96%; /* Image does not overflow the content area */
+    padding: 5px 3px 10px;
+    text-align: center;
+}
+
+.wp-caption.alignnone {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignleft {
+    margin: 5px 20px 20px 0;
+}
+
+.wp-caption.alignright {
+    margin: 5px 0 20px 20px;
+}
+
+.wp-caption img {
+    border: 0 none;
+    height: auto;
+    margin: 0;
+    max-width: 98.5%;
+    padding: 0;
+    width: auto;
+}
+
+.wp-caption p.wp-caption-text {
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
+}
+
+/* Text meant only for screen readers. */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+	        clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+
+.screen-reader-text:focus {
+	background-color: #eee;
+	clip: auto !important;
+	-webkit-clip-path: none;
+	        clip-path: none;
+	color: #444;
+	display: block;
+	font-size: 1em;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+	/* Above WP toolbar. */
+}
