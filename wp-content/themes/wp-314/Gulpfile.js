@@ -1,118 +1,71 @@
-var gulp = require('gulp');
-var cssnano = require('gulp-cssnano');
-var concat = require("gulp-concat");
-var uglify = require("gulp-uglify");
-var autoprefixer = require('gulp-autoprefixer');
-var imagemin = require('gulp-imagemin');
-var imageminMozjpeg = require('imagemin-mozjpeg');
-var sass = require("gulp-sass");
-var gutil = require("gulp-util");
-var del = require("del");
-var babel = require('gulp-babel');
-var include = require("gulp-include");
-var run = require('gulp-run');
+const { src, dest, watch, series, parallel } = require('gulp');
+const sourcemaps = require('gulp-sourcemaps');
+const sass = require('gulp-sass');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');
+const browserSync = require("browser-sync").create();
+var replace = require('gulp-replace');
 
-var dir = {
-	// gets minified, compiled - merged to /dist/css/app.css
-	css: 'src/css/*',
-	csslib: 'src/css/lib/*',
+const files = { 
+    // scssPath: 'src/css/**/*.scss',
+    scssPath: 'src/css/*.scss',
+    jsLibPath: 'src/js/lib/*.js',
+    jsPath: 'src/js/*.js'
+}
 
-	// gets minified, compiled, prefixed - merged to /dist/js/app.js
-	js: 'src/js/*',
+function reload(done) {
+    browserSync.reload();
+    done();
+}
 
-	// gets minified, compiled - merged to /dist/js/lib.js -> app.js
-	jslib: 'src/js/lib/*.js',
+function scssTask(){    
+    return src(files.scssPath)
+        .pipe(sourcemaps.init()) // initialize sourcemaps first
+        .pipe(concat('app.css'))
+        .pipe(sass()) // compile SCSS to CSS
+        .pipe(postcss([ autoprefixer(), cssnano() ])) // PostCSS plugins
+        // .pipe(sourcemaps.write('.')) // write sourcemaps file in current directory
+        .pipe(dest('dist/css'))
+        .pipe(browserSync.stream());
+}
 
-	php: '*.php',
-	// images are first optimized
-	img: 'src/img/**',
+function jsTask(){
+    return src([
+        files.jsLibPath, files.jsPath
+        //,'!' + 'includes/js/jquery.min.js', // to exclude any specific files
+        ])
+        .pipe(concat('app.js'))
+        .pipe(uglify())
+        .pipe(dest('dist/js')
+    );
+}
 
-	// production dirs
-	build: 'dist/',
-	buildCss: 'dist/css/',
-	buildJs: 'dist/js/',
-	buildImg: 'dist/img/'
-};
+// Cachebust
+var cbString = new Date().getTime();
+function cacheBustTask(){
+    return src(['index.html'])
+        .pipe(replace(/cb=\d+/g, 'cb=' + cbString))
+        .pipe(dest('.'));
+}
 
-var messages = {
-	error: '>>> ERROR LINE: ',
-	uglify: '>>> ERROR ON MINIFICATION'
-};
+function watchs() {
+    browserSync.init({
+        // proxy: 'http://localhost/dev/other-project_zad_rekrutacyjne/stamed/', // Change this value to match your local URL.
+        proxy: 'http://localhost/',
+        socket: {
+          domain: 'localhost:3000'
+        }
+    });
 
-// merge, compile, minify css files
-gulp.task('css', function () {
-	return gulp.src(dir.css)
-		.pipe(concat('app.css'))
-		.pipe(sass({
-			sourceMap: true
-		}))
-		.on('error', function (err) {
-			console.error(messages.error + err.line + ' ' + err.relativePath);
-			console.log(err.formatted);
-			this.emit('end');
-		})
-		.pipe(autoprefixer({
-			browsers: ['last 2 versions'],
-			cascade: false
-		}))
-		.pipe(cssnano())
-		.pipe(gulp.dest(dir.buildCss));
-});
-
-
-// merge, compile, minify js files
-gulp.task('js', function () {
-	return gulp.src([dir.jslib, dir.js])
-		.pipe(concat('app.js'))
-		.pipe(babel({
-			presets: ['env']
-		}))
-		.on('error', function (e) {
-			console.log(messages.error + e.loc.line);
-			console.log(e.message + ' ' + e.name);
-			this.emit('end');
-		})
-		.pipe(uglify().on('error', function (uglify) {
-			console.error(messages.uglify);
-			console.log(uglify);
-			this.emit('end');
-		}))
-		.pipe(gulp.dest(dir.buildJs));
-});
-
-// merge, compile, minify js files
-gulp.task('images', function () {
-	gulp.src(dir.img)
-		.pipe(imagemin([
-			imageminMozjpeg({
-				quality: 70
-			}),
-			imagemin.optipng({
-				optimizationLevel: 5
-			}),
-			imagemin.svgo()
-		]))
-		.pipe(gulp.dest(dir.buildImg));
-});
-
-// clear dist dir
-gulp.task("clean", function () {
-	return del([dir.build]);
-});
-
-gulp.task('livereload', function () {
-	return run('livereload').exec();
-});
-
-gulp.task('default', function () {
-	gulp.watch([dir.csslib, dir.css], ['css']);
-	gulp.watch([dir.jslib, dir.js], ['js']);
-	gulp.watch(dir.img, ['images']);
-	gulp.start('livereload');
-});
-
-gulp.task('build', function () {
-	gulp.start('js');
-	gulp.start('css');
-	gulp.start('images');
-});
+    watch([files.scssPath, files.jsPath], parallel(scssTask, jsTask)).on('change', browserSync.reload);
+    watch("*.php").on("change", browserSync.reload);
+}
+ 
+exports.default = series(
+    parallel(scssTask, jsTask), 
+    // cacheBustTask,
+    watchs
+);
