@@ -57,6 +57,7 @@ echo $open . "Usuwam oryginalnego wp-content" . $break;
 exec('rmdir /Q /S '.getcwd().'\wordpress\wp-content');
 echo $open . "Usuwam pliki instalacyjne" . $break;
 exec('del install.php');
+exec('del install-mac.php');
 echo $open . "Usuwam .gitignore" . $break;
 exec('del .gitignore');
 echo $open . "Usuwam README.md" . $break;
