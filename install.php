@@ -11,7 +11,7 @@ echo $break;
 echo $open . 'Pobieram ostatnią wersje wordpressa z ' . $url . $break;
 
 echo $break;
-echo $open . ":: Randomowy Kawał :D ::" . $break;
+echo $open . ":: Randomowy Kawał ::" . $break;
 echo $open. ":: " . str_replace('"', '', file_get_contents('https://geek-jokes.sameerkumar.website/api'));
 echo $break;
 
@@ -83,16 +83,12 @@ exec($command, $output, $return_var);
 $myfile = file_get_contents('./'.$filename);
 $projectPath = dirname(__FILE__);
 
-//echo $myfile;
 $newProjectPath = str_replace("\\", "/", $projectPath);
-$myfile = str_replace("C:/serwer/htdocs/praca/wp-314", $newProjectPath, $myfile);
+$myfile = str_replace("C:/serwer/htdocs/project", $newProjectPath, $myfile);
 $newProjectPath = str_replace("C:/serwer/htdocs", "http://localhost", $newProjectPath);
-
-
-$newFile = str_replace("http://localhost/praca/wp-314", $newProjectPath, $myfile);
+$newFile = str_replace("http://localhost/project", $newProjectPath, $myfile);
 
 file_put_contents("./".$filename,$newFile);
-//file_put_contents("./dump.sql",$newFile);
 
 //import db
 echo $open . "Importuje db.sql" . $break;
@@ -102,7 +98,6 @@ $con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$db_to_import)
 	if (!$con) {
 		die('Could not connect: ' . mysqli_error());
 	}
-	// echo 'Connected successfully';
 
 	// Temporary variable, used to store current query
 	$templine = '';
@@ -114,7 +109,7 @@ $con = mysqli_connect($mysql_host,$mysql_username,$mysql_password,$db_to_import)
 		if (substr($line, 0, 2) == '--' || $line == '')
 			continue;
 
-		// Add this line to the current segment
+	// Add this line to the current segment
 		$templine .= $line;
 	// If it has a semicolon at the end, it's the end of the query
 		if (substr(trim($line), -1, 1) == ';'){
@@ -132,7 +127,6 @@ mysqli_close($con);
 echo $open . "Usuwam sql.php i ".$filename.' ' . $break;
 exec('del '.$filename);
 exec('del sql.php');
-
 
 echo $break;
 echo $open . "-Operacja zakończona!-";

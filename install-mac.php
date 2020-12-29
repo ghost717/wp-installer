@@ -11,7 +11,7 @@ echo $break;
 echo $open . 'Pobieram ostatnią wersje wordpressa z ' . $url . $break;
 
 echo $break;
-echo $open . ":: Randomowy Kawał :D ::" . $break;
+echo $open . ":: Randomowy Kawał ::" . $break;
 echo $open. ":: " . str_replace('"', '', file_get_contents('https://geek-jokes.sameerkumar.website/api'));
 echo $break;
 
@@ -85,11 +85,11 @@ exec($command, $output, $return_var);
 
 //changing project paths
 $myfile = file_get_contents('./'.$filename);
-$myfile = str_replace("/Applications/XAMPP/xamppfiles/htdocs/dev/wp-314", $project_path, $myfile);
+$myfile = str_replace("/Applications/XAMPP/xamppfiles/htdocs/project", $project_path, $myfile);
 $newProjectPath = str_replace("/Applications/XAMPP/xamppfiles/htdocs", "http://localhost", $project_path);
 
 //adding new project paths
-$newFile = str_replace("http://localhost/dev/wp-314", $newProjectPath, $myfile);
+$newFile = str_replace("http://localhost/project", $newProjectPath, $myfile);
 file_put_contents("./".$filename,$newFile);
 
 //import db
