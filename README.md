@@ -38,7 +38,7 @@ BUILD THE PROJECT
 
 ```
 
-### Inluded plugins
+### Require plugins
 
 | Plugin | Description |
 | ------ | ------ |
